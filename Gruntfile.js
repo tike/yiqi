@@ -69,6 +69,28 @@ module.exports = function (grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
+      proxies: [{
+          context: '/', // the context of the data service
+          host: 'localhost', // wherever the data service is running
+          port: 8000 // the port that the data service is running on
+      }],
+      middleware: function (connect, options) {
+        var middlewares = [];
+
+        if (!Array.isArray(options.base)) {
+            options.base = [options.base];
+        }
+
+        // Setup the proxy
+        middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
+
+        // Serve static files
+        options.base.forEach(function(base) {
+          middlewares.push(connect.static(base));
+        });
+
+        return middlewares;
+      },
       livereload: {
         options: {
           open: true,
@@ -385,6 +407,7 @@ module.exports = function (grunt) {
       'bowerInstall',
       'concurrent:server',
       'autoprefixer',
+      'configureProxies:server', // added just before connect
       'connect:livereload',
       'watch'
     ]);
