@@ -30,4 +30,12 @@ angular.module('yiqiApp')
           });
         $log.debug('end of search');
       };
+  }])
+  .controller('ResultItemCtl', ['$scope', '$log', function($scope, $log, result){
+    $scope.result = result;
+    $log.info('resItemCtl', result);
+  }])
+  .controller('TranslationCtl', ['$scope', '$log', function($scope, $log, trans){
+    $scope.translation = trans;
+    $log.info('TransCtl', result)
   }]);

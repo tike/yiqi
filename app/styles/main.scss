@@ -94,22 +94,14 @@ body {
     }
 }
 
-tr.odd{
-	background: #20B2AA;
-	color: white;
-}
-
-tr.even{
-	background: #E0FFFF;
-	color: black;
-}
-
-tr:hover{
-	border: 2px solid #FFD700;
-}
-
-tr:hover td{
-	background: #FF0000;
-	color: #FFD700;
+.chin {
 	font-weight: bold;
+	font-size: 1.5em;
+	border: 1px solid red;
+}
+
+.pinyin{
+	font-weight: bold;
+	font-size: 1.5em;
+	border: 1px solid red;
 }

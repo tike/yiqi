@@ -11,21 +11,22 @@
   <h3 class="text-muted">qiyi</h3>
 </div>
 
-<div class="jumbotron">
-  <h4>{{ message }} {{ query }}</h4>
-  <table border="1" ng-if="querySuccessfull">
-	<thead><th>simple</th><th>pinyin</th><th>trans</th></thead>
-	<tbody>
-		<tr ng-repeat="item in foundItems" ng-class-even="'even'" ng-class-odd="'odd'">
-			<td>{{ item.simple }}</td>
-			<td>{{ item.pinyin }}</td>
-			<td>{{ item.trans }}</td>
-		</tr>
-	</tbody>
-  </table>
-</div>
-
-<div class="row marketing">
+<div class="container">
+	<div class="row marketing">
+	  <h4>{{ message }} {{ query }}</h4>
+	</div>
+	<div ng-controller="ResultItemCtl" ng-repeat-start="item in foundItems" class="row">
+	  <div class="col-lg-2 chin simple">{{ item.simple }}</div>
+	  <div class="col-lg-2 chin trad">{{ item.trad }}</div>
+	  <div class="col-lg-8 pinyin">{{ item.pinyin }}</div>
+	</div>
+	<div ng-repeat-end class="row">
+		<div ng-controller="TranslationCtl" ng-repeat="(lang, translations) in item.trans" col="col-lg-4">
+			<span>{{ translations.length }} x</span>
+			<img src="/images/{{ lang }}.ico" alt="lang icon"></img>
+			<div ng-repeat="trans in translations" class="col-lg-11">{{ $index + 1 }}. {{ trans }}</div>
+		</div>
+	</div>
 </div>
 
 <div class="footer">
