@@ -7,7 +7,7 @@ angular.module('yiqiApp')
      *  0: now search has been made since pageload
      *  1: user is typing a query
      *  2: search started, result pending
-     *  3: search finished, result valid
+     *  3: search finished, results found
      *  4: search finished, no results found
      *  5: search finished, error occured
      */
@@ -51,6 +51,11 @@ angular.module('yiqiApp')
         $log.info('search sucessfull', $scope.searchState, data.length, status);
       })
       .error(function(data, status, headers){
+        if (status === 404){
+          $scope.searchState = 4;
+          $log.debug('nothing found!', $scope.searchState, status)
+          return;
+        }
         $scope.searchState = 5;
         $log.error('search error', $scope.searchState, status, headers());
       });
