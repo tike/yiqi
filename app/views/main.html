@@ -5,8 +5,7 @@
     <li><a ng-href="#">Contact</a></li>
   </ul>
   <div class="pull-right col-lg-4" ng-controller="DictSearchCtrl">
-	<input ng-model="query" ng-change="resetSearchState()" type="text" placeholder="type you search here..."></input>
-	<button ng-click="search(query)" class="btn btn-small btn-default">go!</button>
+	<input ng-model="query" ng-change="watchSearchState()" ng-enter="search(query)" type="text" placeholder="type you search here..."></input>
 	<span ng-switch on="searchState">
 		<span ng-switch-when="1">
 			<p>{{ getUserMessage() }} {{ query }}</p>

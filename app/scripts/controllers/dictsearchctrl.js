@@ -14,7 +14,7 @@ angular.module('yiqiApp')
     $scope.searchState = 0;
     
     // The request url to be used for the query
-    var queryUrl = '/dictdummy.json';
+    var queryUrl = '/ajax/search';
     
     // The query value provided by the user
     $scope.query = '';
@@ -57,7 +57,7 @@ angular.module('yiqiApp')
       $log.debug('search ended', $scope.searchState);
     };
     
-    $scope.resetSearchState = function(){
+    $scope.watchSearchState = function(){
       $scope.searchState = 1;
     };
     
