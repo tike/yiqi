@@ -1,0 +1,18 @@
+<input ng-model="query" ng-change="watchSearchState()" ng-enter="search(query)" type="text" placeholder="type you search here..."></input>
+<span ng-switch on="searchState">
+	<span ng-switch-when="1">
+		<p>{{ getUserMessage() }} {{ query }}</p>
+	</span>
+	<span ng-switch-when="2">
+		<p>{{ getUserMessage() }} {{ query }}</p>
+	</span>
+	<span ng-switch-when="3">
+		<p>{{ foundItems.length }} {{ getUserMessage() }}</p>
+	</span>
+	<span ng-switch-when="4">
+		<p>{{ getUserMessage() }}</p>
+	</span>
+	<span ng-switch-when="5">
+		<p>{{ getUserMessage() }}</p>
+	</span>
+</span>
