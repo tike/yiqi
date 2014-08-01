@@ -13,9 +13,16 @@
 
 <div class="jumbotron">
   <h4>{{ message }} {{ query }}</h4>
-  <ul>
-	<li ng-repeat="item in foundItems">{{ item.simple }} {{ item.pinyin }}</br>{{ item.trans }}</li>
-  </ul>
+  <table border="1" ng-if="querySuccessfull">
+	<thead><th>simple</th><th>pinyin</th><th>trans</th></thead>
+	<tbody>
+		<tr ng-repeat="item in foundItems" ng-class-even="'even'" ng-class-odd="'odd'">
+			<td>{{ item.simple }}</td>
+			<td>{{ item.pinyin }}</td>
+			<td>{{ item.trans }}</td>
+		</tr>
+	</tbody>
+  </table>
 </div>
 
 <div class="row marketing">

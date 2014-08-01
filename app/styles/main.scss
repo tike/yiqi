@@ -93,3 +93,23 @@ body {
         border-bottom: 0;
     }
 }
+
+tr.odd{
+	background: #20B2AA;
+	color: white;
+}
+
+tr.even{
+	background: #E0FFFF;
+	color: black;
+}
+
+tr:hover{
+	border: 2px solid #FFD700;
+}
+
+tr:hover td{
+	background: #FF0000;
+	color: #FFD700;
+	font-weight: bold;
+}

@@ -5,6 +5,7 @@ angular.module('yiqiApp')
     $scope.query = 'dose';
     $scope.excuting = false;
     $scope.message = "Search for";
+    $scope.querySuccessfull = false;
     $scope.foundItems = [];
 
     $scope.search = function(query){
@@ -18,9 +19,10 @@ angular.module('yiqiApp')
             url: url,
             params: {q: query},
           }).success(function(data, status, headers, config){
-            $scope.excuting = false;
-            $scope.message = "Found " + data.length + " results for "
             $scope.foundItems = data;
+            $scope.excuting = false;
+            $scope.querySuccessfull = true;
+            $scope.message = "Found " + data.length + " results for "
             $log.info('success', data.length, status);
           }).error(function(data, status, headers, config){
             $scope.excuting = false;
