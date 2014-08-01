@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yiqiApp')
-  .controller('DictSearchCtrl', ['$scope', '$http', '$log', function ($scope, $http, $log) {
+  .controller('DictSearchCtrl', ['$scope', '$http', '$log', '$location', function ($scope, $http, $log, $location) {
     /**
      * the current status of the search
      *  0: now search has been made since pageload
@@ -49,11 +49,12 @@ angular.module('yiqiApp')
         $scope.searchState = 3;
         $scope.foundItems = data;
         $log.info('search sucessfull', $scope.searchState, data.length, status);
+        $location.path('/searchresults');
       })
       .error(function(data, status, headers){
         if (status === 404){
           $scope.searchState = 4;
-          $log.debug('nothing found!', $scope.searchState, status)
+          $log.debug('nothing found!', $scope.searchState, status);
           return;
         }
         $scope.searchState = 5;
