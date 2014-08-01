@@ -7,8 +7,15 @@ angular
     'ngSanitize',
     'ngRoute'
   ])
+    .config(function($locationProvider){
+    $locationProvider.html5Mode(true);
+  })
   .config(function ($routeProvider) {
     $routeProvider
+      .when('/searchresults', {
+        templateUrl: 'views/searchresults.html',
+        controller: 'SearchResultsCtrl',
+      })
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
