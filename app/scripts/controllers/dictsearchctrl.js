@@ -15,6 +15,7 @@ angular.module('yiqiApp')
     
     // The query value provided by the user
     $scope.query = '';
+    $scope.numItems = 0;
     
     var promise = null;
     
@@ -31,12 +32,14 @@ angular.module('yiqiApp')
     $scope.search = function(query){
       $scope.searchState = 2;
       $log.debug('search pending...', $scope.searchState);
-      promise = FulltextSearch.search(query).success(function(data, status){
+      promise = FulltextSearch.search(query)
+      .success(function(data, status){
           $scope.searchState = 3;
+          $scope.numItems = data.length;
           $log.debug('found', status, data.length, $scope.searchState);
           $location.path('/searchresults');
         })
-      .error(function(){
+      .error(function(data, status){
         if (status === 404){
           $scope.searchState = 4;
           $log.debug('nothing found', status, $scope.searchState);

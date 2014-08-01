@@ -19,12 +19,12 @@ angular.module('yiqiApp')
         queryParam = query;
         query.Status = 0;
         
-        promise = $http({
+        var plainPromise = $http({
           method: 'GET',
           url: queryUrl,
           params: {q: query},
-        })
-        .success(function(data, status){
+        });
+        promise = plainPromise.success(function(data, status){
           queryStatus = status;
           $log.debug('FTS: success', status, data.length);
           foundItems = data;
@@ -39,7 +39,7 @@ angular.module('yiqiApp')
           $log.error('FTS: search error', status, headers());
         });
         $log.debug('FTS: search ended');
-        return promise;
+        return plainPromise;
       },
       
       getResult: function(){
