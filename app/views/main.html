@@ -3,11 +3,28 @@
     <li class="active"><a ng-href="#">Home</a></li>
     <li><a ng-href="#">About</a></li>
     <li><a ng-href="#">Contact</a></li>
-	<li ng-controller="DictSearchCtrl">
-		<ng-include src="'partials/dictsearchvw.html'"
-		<h4>{{ getUsermessage() }}</h4>
-	</li>
   </ul>
+  <div class="pull-right col-lg-4" ng-controller="DictSearchCtrl">
+	<input ng-model="query" ng-change="resetSearchState()" type="text" placeholder="type you search here..."></input>
+	<button ng-click="search(query)" class="btn btn-small btn-default">go!</button>
+	<span ng-switch on="searchState">
+		<span ng-switch-when="1">
+			<p>{{ getUserMessage() }} {{ query }}</p>
+		</span>
+		<span ng-switch-when="2">
+			<p>{{ getUserMessage() }} {{ query }}</p>
+		</span>
+		<span ng-switch-when="3">
+			<p>{{ foundItems.length }} {{ getUserMessage() }}</p>
+		</span>
+		<span ng-switch-when="4">
+			<p>{{ getUserMessage() }}</p>
+		</span>
+		<span ng-switch-when="5">
+			<p>{{ getUserMessage() }}</p>
+		</span>
+	</span>
+  </div>
   <h3 class="text-muted">qiyi</h3>
 </div>
 

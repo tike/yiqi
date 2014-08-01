@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: DictsearchctlCtrl', function () {
+describe('Controller: DictSearchCtrl', function () {
 
   // load the controller's module
   beforeEach(module('yiqiApp'));
 
-  var DictsearchctlCtrl,
+  var DictSearchCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    DictsearchctlCtrl = $controller('DictsearchctlCtrl', {
+    DictSearchCtrl = $controller('DictSearchCtrl', {
       $scope: scope
     });
   }));
