@@ -1,8 +1,8 @@
 <div class="container">
 	<div class="row marketing">
-	  <h4>{{ message }} {{ query }}</h4>
+	  <h4>{{ resp.data.length }} items found for {{ resp.query }}</h4>
 	</div>
-	<div ng-repeat-start="item in foundItems" class="row">
+	<div ng-repeat-start="item in resp.data" class="row">
 	  <div class="col-lg-2 chin simple">{{ item.simple }}</div>
 	  <div class="col-lg-2 chin trad">{{ item.trad }}</div>
 	  <div class="col-lg-8 pinyin">{{ item.pinyin }}</div>
