@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yiqiApp')
-  .controller('DictSearchCtrl', ['$scope', '$http', '$log', '$location', function ($scope, $http, $log, $location) {
+  .controller('DictSearchCtrl', ['$scope', '$log', '$location', 'FulltextSearch', function ($scope, $log, $location, FulltextSearch) {
     /**
      * the current status of the search
      *  0: now search has been made since pageload
@@ -13,14 +13,10 @@ angular.module('yiqiApp')
      */
     $scope.searchState = 0;
     
-    // The request url to be used for the query
-    var queryUrl = '/ajax/search';
-    
     // The query value provided by the user
     $scope.query = '';
     
-    // Stores the found items after successfull search
-    $scope.foundItems = [];
+    var promise = null;
     
     //messages shown to the user during the search execution cycle
     var messages = [
@@ -35,32 +31,20 @@ angular.module('yiqiApp')
     $scope.search = function(query){
       $scope.searchState = 2;
       $log.debug('search pending...', $scope.searchState);
-      $http({
-        method: 'GET',
-        url: queryUrl,
-        params: {q: query},
+      promise = FulltextSearch.search(query).success(function(data, status){
+          $scope.searchState = 3;
+          $log.debug('found', status, data.length, $scope.searchState);
+          $location.path('/searchresults');
       })
-      .success(function(data, status){
-        if (data.length === 0){
-          $scope.searchState = 4;
-          $log.debug('nothing found', $scope.searchState, status);
-          return;
-        }
-        $scope.searchState = 3;
-        $scope.foundItems = data;
-        $log.info('search sucessfull', $scope.searchState, data.length, status);
-        $location.path('/searchresults');
-      })
-      .error(function(data, status, headers){
+      .error(function(){
         if (status === 404){
           $scope.searchState = 4;
-          $log.debug('nothing found!', $scope.searchState, status);
+          $log.debug('nothing found', status, $scope.searchState);
           return;
         }
         $scope.searchState = 5;
-        $log.error('search error', $scope.searchState, status, headers());
+        $log.debug('error', status, $scope.searchState);
       });
-      $log.debug('search ended', $scope.searchState);
     };
     
     $scope.watchSearchState = function(){
