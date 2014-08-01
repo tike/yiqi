@@ -35,7 +35,7 @@ angular.module('yiqiApp')
           $scope.searchState = 3;
           $log.debug('found', status, data.length, $scope.searchState);
           $location.path('/searchresults');
-      })
+        })
       .error(function(){
         if (status === 404){
           $scope.searchState = 4;
