@@ -1,15 +1,17 @@
-<div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <div class="pull-right col-lg-4" ng-controller="DictSearchCtrl">
-	<ng-include src="'/views/partials/dictsearchvw.html'"/>
-  </div>
-  <h3 class="text-muted">qiyi</h3>
+<ng-include src="'/views/partials/sitehead.html'"></ng-include>
+
+<div class="jumbotron">
+	<h1>What's the difference between learning and playing?</h1>
+	<h2>You decide!</h2>
+	<div class="row">
+		<ul>
+			<li>fun</li>
+			<li>games</li>
+			<li>learning</li>
+		</ul>
+	</div>
 </div>
 
-<div class="footer">
-  <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-</div>
+<ng-include src="'/views/partials/sitefoot.html'"></ng-include>
+
+

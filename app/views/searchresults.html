@@ -1,15 +1,12 @@
+<ng-include src="'/views/partials/sitehead.html'"></ng-include>
+
 <div ng-controller="SearchResultsCtrl" class="container">
-	<div class="row">
-		<div class="pull-right col-lg-4" ng-controller="DictSearchCtrl">
-			<ng-include src="'/views/partials/dictsearchvw.html'"/>
-		</div>
-	</div>
 	<div class="row">
 	  <h4 ng-if="resp.data.length > 0" class="col-lg-4">{{ resp.data.length }} items found for {{ resp.query }}</h4>
 	  <label class="col-lg-2">Filter by language:</label>
 	  <select model="selectedLang" ng-options="lang.long for lang in languages" class="col-lg-6"></select>
 	</div>
-	<div ng-repeat-start="item in resp.data" class="row">
+	<div ng-repeat-start="item in resp.data" class="panel">
 	  <div class="col-lg-2 chin simple">{{ item.simple }}</div>
 	  <div class="col-lg-2 chin trad">{{ item.trad }}</div>
 	  <div class="col-lg-8 pinyin">{{ item.pinyin }}</div>
@@ -21,3 +18,5 @@
 		</div>
 	</div>
 </div>
+
+<ng-include src="'/views/partials/sitefoot.html'" /></ng-include>
