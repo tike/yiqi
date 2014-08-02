@@ -74,11 +74,11 @@ module.exports = function (grunt) {
         livereload: 35729
       },
       proxies: [{
-          context: '/ajax',
-          host: 'localhost',
-          port: 8000,
-          https: false,
-          xforward: false,
+        context: '/ajax',
+        host: 'localhost',
+        port: 8000,
+        https: false,
+        xforward: false,
       }],
       livereload: {
         options: {
