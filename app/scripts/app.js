@@ -7,9 +7,9 @@ angular
     'ngSanitize',
     'ngRoute'
   ])
-  .config(function($locationProvider){
+  /*.config(function($locationProvider){
     $locationProvider.html5Mode(true);
-  })
+  })*/
   .config(function ($routeProvider) {
     $routeProvider
       .when('/searchresults', {

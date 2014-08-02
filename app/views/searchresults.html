@@ -1,6 +1,13 @@
-<div class="container">
-	<div class="row marketing">
-	  <h4>{{ resp.data.length }} items found for {{ resp.query }}</h4>
+<div ng-controller="SearchResultsCtrl" class="container">
+	<div class="row">
+		<div class="pull-right col-lg-4" ng-controller="DictSearchCtrl">
+			<ng-include src="'/views/partials/dictsearchvw.html'"/>
+		</div>
+	</div>
+	<div class="row">
+	  <h4 ng-if="resp.data.length > 0" class="col-lg-4">{{ resp.data.length }} items found for {{ resp.query }}</h4>
+	  <label class="col-lg-2">Filter by language:</label>
+	  <select model="selectedLang" ng-options="lang.long for lang in languages" class="col-lg-6"></select>
 	</div>
 	<div ng-repeat-start="item in resp.data" class="row">
 	  <div class="col-lg-2 chin simple">{{ item.simple }}</div>
@@ -9,9 +16,8 @@
 	</div>
 	<div ng-repeat-end class="row">
 		<div ng-repeat="(lang, translations) in item.trans" col="col-lg-4">
-			<span>{{ translations.length }} x</span>
-			<img src="/images/{{ lang }}.ico" alt="lang icon"></img>
-			<div ng-repeat="trans in translations" class="col-lg-11">{{ $index + 1 }}. {{ trans }}</div>
+			<span>{{ translations.length }} x</span><img src="/images/{{ lang }}.ico" alt="lang icon"></img>
+			<div ng-repeat="trans in translations" class="col-lg-8">{{ $index + 1 }}. {{ trans }}</div>
 		</div>
 	</div>
 </div>
