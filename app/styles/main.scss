@@ -94,14 +94,18 @@ body {
     }
 }
 
+.foundItem{
+	border: 1px solid black;
+	border-radius: 6px 6px 6px 6px 6px 6px;
+}
+
 .chin {
 	font-weight: bold;
 	font-size: 1.5em;
-	border: 1px solid red;
+
 }
 
 .pinyin{
 	font-weight: bold;
 	font-size: 1.5em;
-	border: 1px solid red;
 }
