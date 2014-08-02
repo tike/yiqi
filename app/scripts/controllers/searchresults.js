@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('yiqiApp')
-  .controller('SearchResultsCtrl', ['$scope', '$log', 'FulltextSearch', function ($scope, $log, FulltextSearch) {
+  .controller('SearchResultsCtrl', ['$scope', '$log', '$routeParams', 'FulltextSearch', function ($scope, $log, $routeParams, FulltextSearch) {
+    $log.debug('query', $routeParams);
+    if ($routeParams.query !== undefined){
+      FulltextSearch.search($routeParams.query);
+    }
     $scope.resp = FulltextSearch.getResult();
     
     $scope.languages = [

@@ -6,17 +6,9 @@
 	  <label class="col-lg-2">Filter by language:</label>
 	  <select model="selectedLang" ng-options="lang.long for lang in languages" class="col-lg-6"></select>
 	</div>
-	<div ng-repeat-start="item in resp.data" class="panel">
-	  <div class="col-lg-2 chin simple">{{ item.simple }}</div>
-	  <div class="col-lg-2 chin trad">{{ item.trad }}</div>
-	  <div class="col-lg-8 pinyin">{{ item.pinyin }}</div>
-	</div>
-	<div ng-repeat-end class="row">
-		<div ng-repeat="(lang, translations) in item.trans" col="col-lg-4">
-			<span>{{ translations.length }} x</span><img src="/images/{{ lang }}.ico" alt="lang icon"></img>
-			<div ng-repeat="trans in translations" class="col-lg-8">{{ $index + 1 }}. {{ trans }}</div>
-		</div>
+	<div>
+		<ng-include src="'/views/partials/searchresultlist.html'"></ng-include>
 	</div>
 </div>
 
-<ng-include src="'/views/partials/sitefoot.html'" /></ng-include>
+<ng-include src="'/views/partials/sitefoot.html'"></ng-include>
