@@ -7,7 +7,7 @@ angular.module('yiqiApp')
       $scope.query = '';
     }
     $scope.search = function(){
-      $location.path('/searchresults/').search({query: $scope.query });
+      $location.path('/search/').search({query: $scope.query });
     };
   }]);
 

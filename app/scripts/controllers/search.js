@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yiqiApp')
-  .controller('SearchResultsCtrl', ['$scope', '$log', '$routeParams', 'FulltextSearch', function ($scope, $log, $routeParams, FulltextSearch) {
+  .controller('SearchCtrl', ['$scope', '$log', '$routeParams', 'FulltextSearch', function ($scope, $log, $routeParams, FulltextSearch) {
     /**
      * the current status of the search
      *  0: now search has been made since pageload

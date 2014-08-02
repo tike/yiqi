@@ -12,13 +12,13 @@ angular
   })*/
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/searchresults/:query', {
-        templateUrl: 'views/searchresults.html',
-        controller: 'SearchResultsCtrl',
+      .when('/search/:query', {
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl',
       })
-      .when('/searchresults', {
-        templateUrl: 'views/searchresults.html',
-        controller: 'SearchResultsCtrl',
+      .when('/search', {
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl',
       })
       .when('/', {
         templateUrl: 'views/main.html',
