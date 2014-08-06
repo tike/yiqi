@@ -1,8 +1,15 @@
 <ng-include src="'/views/partials/sitehead.html'"></ng-include>
 
-<div ng-controller="SearchCtrl" ng-if="found.length > 0" class="container panel">
+<div ng-controller="SearchCtrl"  class="container panel">
 	<div class="row">
-	  <h4 class="col-md-4">{{ found.length }} items found for {{ query }}</h4>
+	  <span class="col-md-6" ng-switch on="searchState">
+		<h4 ng-switch-when="0">{{ messages[searchState] }}</h4>
+		<h4 ng-switch-when="1">{{ messages[searchState] }} {{ query }}</h4>
+		<h4 ng-switch-when="2">{{ messages[searchState] }} {{ query }}</h4>
+		<h4 ng-switch-when="3">{{ found.length }} {{ messages[searchState] }} {{ query }}</h4>
+		<h4 ng-switch-when="4">{{ messages[searchState] }} {{ query }}</h4>
+		<h4 ng-switch-when="5">{{ messages[searchState] }}</h4>
+	   </span>
 	</div>
 	
 	<div class="foundItem" ng-repeat="item in found" ng-init="itemIndex = $index;">

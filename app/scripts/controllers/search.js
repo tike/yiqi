@@ -12,24 +12,24 @@ angular.module('yiqiApp')
      *  5: search finished, error occured
      */
     $scope.searchState = 0;
-    
-    //messages shown to the user during the search execution cycle
-    var messages = [
-      '',
-      'Going to search for',
-      'Searching for',
-      'items found!',
-      'no matches. Sorry.',
-      'An error occured, please try again.'
+    // messages shown to the user during the search execution cycle
+    $scope.messages = [
+      'Type your search into the search box',
+      'Going to search for',                 // user is typing a query
+      'Searching for',                       // search started, result pending
+      'entries found for',                   // search finished, results found
+      'didn\'t find anything matching',      // search finished, no results found
+      'An error occured, please try again.', // search finished, error occured
     ];
     var promise = null;
     $scope.query = '';
     $scope.found = [];
     
     $scope.search = function(query){
+      $scope.searchState = 1;
       promise = FulltextSearch.search(query)
       .success(function(data, status){
-          $scope.searchState = 3;
+          $scope.searchState = 2;
           $scope.found = data;
           $log.debug('found', status, data.length, $scope.searchState);
         })
