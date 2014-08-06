@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yiqiApp')
-  .controller('DictSearchCtrl', ['$scope', '$log', '$location', 'FulltextSearch', function ($scope, $log, $location, FulltextSearch) {
+  .controller('DictSearchCtrl', ['$scope', '$log', '$location', function ($scope, $log, $location) {
     // The query value provided by the user
     if ($scope.$parent.query === undefined){
       $scope.query = '';
