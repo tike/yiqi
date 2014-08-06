@@ -1,27 +1,30 @@
 <ng-include src="'/views/partials/sitehead.html'"></ng-include>
 
-<div ng-controller="SearchCtrl" ng-if="found.length > 0" class="container">
+<div ng-controller="SearchCtrl" ng-if="found.length > 0" class="container panel">
 	<div class="row">
 	  <h4 class="col-md-4">{{ found.length }} items found for {{ query }}</h4>
-	  <label class="col-md-2">Filter by language:</label>
-	  <select model="selectedLang" ng-options="lang for lang in languages" class="col-md-6"></select>
 	</div>
 	
-	<div class="foundItem" ng-repeat="item in found" ng-init="itemIndex = $index">
+	<div class="foundItem" ng-repeat="item in found" ng-init="itemIndex = $index;">
 		<div class="row">
-		  <div class="col-md-6 chin simple">{{ item.simple }} (simplified)</div>
-		  <div class="col-md-6 chin trad">{{ item.trad }} (traditional)</div>
+		  <div class="col-md-6 chin simple">{{ item.simple }}</div>
+		  <div class="col-md-6 chin trad">{{ item.trad }}</div>
 		</div>
 		<div class="row">
 		<div class="col-md-12 pinyin">{{ item.pinyin }}</div>
 		</div>
 
-		<div ng-repeat="(lang, translations) in item.trans" ng-init="{langIndex: $index, langFirst: $first, langLast: $last}">
-			<span ng-repeat="trans in translations" ng-init="{transIndex: $index, transFirst: $first, transLast: $last}">
-					<img ng-src="/images/{{ lang }}.ico" alt="lang icon"></img>
-					<span>{{ trans }}</span>
-					<span ng-if="translast" class="glyphicon glyphicon-globe"></span>
-			</span>
+		<div ng-repeat="(lang, translations) in item.trans"
+			 ng-init="langIndex = $index; langFirst = $first; langLast = $last;">
+			 <div ng-class="{lang: true, langLast: langLast }">
+				<span class="trans" ng-repeat="trans in translations"
+					ng-init="transIndex = $index; transFirst = $first; transLast = $last;">
+					<span class="trans">
+						<img ng-src="/images/{{ lang }}.ico" alt="lang icon"></img>
+						<span>{{ trans }}</span>
+					</span>
+				</span>
+			</div>
 		</div>
 	</div>
 </div>
