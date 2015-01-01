@@ -16,7 +16,13 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
 
   // Load grunt-proxy
-  grunt.loadNpmTasks('grunt-proxy');
+  grunt.loadNpmTasks('grunt-connect-proxy');
+  
+  // Configurable paths
+  var config = {
+    app: 'app',
+    dist: 'dist'
+  };
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -77,8 +83,6 @@ module.exports = function (grunt) {
         context: '/ajax',
         host: 'localhost',
         port: 8000,
-        https: false,
-        xforward: false,
       }],
       livereload: {
         options: {
@@ -87,27 +91,37 @@ module.exports = function (grunt) {
             '.tmp',
             '<%= yeoman.app %>'
           ],
-          middleware: function (connect, options) {
-            if (!Array.isArray(options.base)) {
-              options.base = [options.base];
-            }
-
-            // Setup the proxy
-            var middlewares = [require('grunt-connect-proxy/lib/utils').proxyRequest];
-
-            // Serve static files.
-            options.base.forEach(function(base) {
+ 
+          middleware: function(connect, options) {
+            
+              var middlewares = [];
+              
+              if (!Array.isArray(options.base)) {
+                options.base = [options.base];
+              }
+              
+              // Setup the proxy
+              middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
+              
+              // Serve static files.
+              options.base.forEach(function(base) {
                 middlewares.push(connect.static(base));
               });
 
-            // Make directory browse-able.
-            var directory = options.directory || options.base[options.base.length - 1];
-            middlewares.push(connect.directory(directory));
-
-            return middlewares;
+              // Make directory browse-able.
+              //var directory = options.directory || options.base[options.base.length - 1];
+              //middlewares.push(connect.directory(directory));
+              
+              middlewares.push(
+                connect.static('.tmp'),
+                connect().use('/bower_components', connect.static('./bower_components')),
+                connect.static(config.app)
+              );
+              return middlewares;
           },
         },
       },
+      
       test: {
         options: {
           port: 9001,
