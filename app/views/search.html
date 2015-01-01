@@ -18,16 +18,18 @@
 		  <div class="col-md-6 chin trad">{{ item.trad }}</div>
 		</div>
 		<div class="row">
-		<div class="col-md-12 pinyin">{{ item.pinyin }}</div>
+			<div class="col-md-12 pinyin">
+				<span ng-repeat="(idx, syl) in item.pinyin track by idx" yq-pinyin="{{ syl }}"></span>
+			</div>
 		</div>
 
 		<div ng-repeat="(lang, translations) in item.trans"
 			 ng-init="langIndex = $index; langFirst = $first; langLast = $last;">
 			 <div ng-class="{lang: true, langLast: langLast }">
-				<span class="trans" ng-repeat="trans in translations"
+				<img ng-src="/images/{{ lang }}.ico" alt="lang icon"></img>
+				<span class="trans" ng-repeat="(idx, trans) in translations track by idx"
 					ng-init="transIndex = $index; transFirst = $first; transLast = $last;">
 					<span class="trans">
-						<img ng-src="/images/{{ lang }}.ico" alt="lang icon"></img>
 						<span>{{ trans }}</span>
 					</span>
 				</span>

@@ -62,23 +62,18 @@ angular.module('yiqiApp')
     
     return {
       restrict: 'A',
-      replace: true,
-      scope: {
-      },
       link: function(scope, elem, attrs){
-        $log.debug('scope:', scope);
-        $log.debug('elem:', elem);
-        $log.debug('attrs:', attrs);
-        
-        var sylable = elem.text();
+        var sylable = attrs.yqPinyin;
         
         var tone = parseInt(sylable.charAt(sylable.length - 1), 10);
         if (isNaN(tone)){
           return sylable;
         }
+        sylable = placeTone(sylable, tone);
         
-        elem.text(placeTone(sylable, tone));
+        elem.text(sylable);
         elem.css('color', COLORS['Hanping'][tone - 1]);
+        
       },
     };
   });
