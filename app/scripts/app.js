@@ -2,9 +2,6 @@
 
 angular
   .module('yiqiApp', [
-    'ngCookies',
-    'ngResource',
-    'ngSanitize',
     'ngRoute'
   ])
   /*.config(function($locationProvider){
